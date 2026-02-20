@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Lololowka</title>
-    <!-- Подключаем жирный шрифт для стиля игры -->
+
+    <!-- ТЕГИ ДЛЯ ПРЕВЬЮ ПРИ ОТПРАВКЕ ССЫЛКИ -->
+    <meta property="og:title" content="For Lololowka — Fan Project">
+    <meta property="og:description" content="Сайт находится в стадии разработки">
+    <!-- Здесь укажи файл с головой Лололошки -->
+    <meta property="og:image" content="avatarka.jfif"> 
+    <meta property="og:type" content="website">
+
+    <!-- Шрифт -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
+    
     <style>
-        /* Фиолетово-черный фон */
         body {
             margin: 0;
             padding: 0;
@@ -21,7 +29,6 @@
             overflow: hidden;
         }
 
-        /* Верхняя лента */
         header {
             background-color: rgba(15, 15, 15, 0.95);
             padding: 20px 50px;
@@ -33,10 +40,8 @@
             font-size: 28px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Центральный блок */
         main {
             flex-grow: 1;
             display: flex;
@@ -62,10 +67,9 @@
             color: #888;
             margin-top: 15px;
             font-weight: 300;
-            letter-spacing: 1px;
         }
 
-        /* Виджет в левом нижнем углу */
+        /* Виджет сезона в углу */
         .season-widget {
             position: absolute;
             bottom: 40px;
@@ -75,17 +79,14 @@
             cursor: pointer;
         }
 
-        /* Картинка сезона (M47.webp) */
         .season-icon {
             width: 80px;
             height: auto;
             z-index: 2;
             filter: drop-shadow(0 0 10px rgba(0, 206, 209, 0.6));
-            /* Быстрое вращение */
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Текст, который выезжает из-за картинки */
         .season-text-hidden {
             display: flex;
             flex-direction: column;
@@ -115,7 +116,6 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
         }
 
-        /* Анимация: маска крутится влево, текст выезжает вправо */
         .season-widget:hover .season-icon {
             transform: rotate(-360deg) scale(1.2);
         }
@@ -138,9 +138,8 @@
         <div class="status">сайт находится в стадии разработки</div>
     </main>
 
-    <!-- Виджет сезона -->
     <div class="season-widget">
-        <!-- Указан твой файл M47.webp -->
+        <!-- Здесь остается Мастерская 47 -->
         <img class="season-icon" src="M47.webp" alt="Мастерская 47">
         
         <div class="season-text-hidden">
