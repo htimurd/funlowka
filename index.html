@@ -3,269 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Lololowka</title>
-
-    <!-- Мета-теги для превью -->
-    <meta property="og:title" content="For Lololowka — Fan Project">
-    <meta property="og:description" content="Сайт находится в стадии разработки">
-    <meta property="og:image" content="avatar.png"> 
-    <meta property="og:type" content="website">
-
+    <title>For Lololowka — Funlowka v2.3.4</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
-    
     <style>
+        :root {
+            --purple: #8a2be2;
+            --cyan: #00ced1;
+            --panel-bg: rgba(5, 5, 5, 0.98);
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; }
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background: radial-gradient(circle at center, #2e004f 0%, #000000 100%);
             background-attachment: fixed;
             height: 100vh;
             font-family: 'Montserrat', sans-serif;
             color: white;
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
+            display: flex; flex-direction: column;
         }
 
         header {
             background-color: rgba(15, 15, 15, 0.95);
             padding: 15px 50px;
-            border-bottom: 2px solid #8a2be2;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
+            border-bottom: 2px solid var(--purple);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
         }
+        .logo-text { font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
 
-        .logo-text {
-            font-size: 24px;
-            font-weight: 900;
-            text-transform: uppercase;
+        /* ЭКРАН ПРИВЕТСТВИЯ */
+        #hero-page {
+            flex-grow: 1; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            transition: var(--transition); z-index: 10;
         }
-
-        /* Контейнер меню */
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        /* Список соцсетей (изначально скрыт) */
-        .social-links {
-            display: flex;
-            gap: 15px;
-            overflow: hidden;
-            max-width: 0;
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            white-space: nowrap;
-        }
-
-        /* Когда меню активно */
-        .social-links.active {
-            max-width: 500px;
-            opacity: 1;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 5px 12px;
-            border: 1px solid #8a2be2;
-            border-radius: 4px;
-            transition: 0.3s;
-            background: rgba(138, 43, 226, 0.1);
-        }
-
-        .nav-link:hover {
-            background: #8a2be2;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-        }
-
-        /* Кнопка Показать/Скрыть */
-        .toggle-btn {
-            background: none;
-            border: 2px solid #00ced1;
-            color: #00ced1;
-            padding: 8px 18px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .toggle-btn:hover {
-            background: #00ced1;
-            color: black;
-            box-shadow: 0 0 20px rgba(0, 206, 209, 0.4);
-        }
-
-        main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+        #hero-page.hidden { display: none; }
 
         .fun-lowka {
-            font-size: 82px;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin: 0;
-            background: linear-gradient(to bottom, #ffffff 30%, #8a2be2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 82px; font-weight: 900; text-transform: uppercase; margin: 0;
+            background: linear-gradient(to bottom, #ffffff 30%, var(--purple) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.5));
         }
 
-        .sub-title {
-            font-size: 22px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            color: #b388ff;
-            margin-top: -5px;
-            margin-bottom: 20px;
-        }
-
-        .status {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 35px;
-        }
-
         .main-btn {
-            text-decoration: none;
-            color: white;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 15px 45px;
-            background: rgba(138, 43, 226, 0.1);
-            border: 2px solid #8a2be2;
-            border-radius: 50px;
-            transition: 0.4s;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+            color: white; font-weight: 900; text-transform: uppercase;
+            padding: 16px 50px; background: rgba(138, 43, 226, 0.1);
+            border: 2px solid var(--purple); border-radius: 50px;
+            cursor: pointer; transition: 0.4s; margin-top: 30px;
+        }
+        .main-btn:hover { background: var(--purple); transform: scale(1.05); box-shadow: 0 0 30px var(--purple); }
+
+        /* ГЛАВНЫЙ ИНТЕРФЕЙС */
+        #main-panel {
+            display: none; width: 100%; height: calc(100vh - 60px);
+            opacity: 0; transition: var(--transition);
+        }
+        #main-panel.active { display: flex; opacity: 1; }
+
+        /* ЛЕНТА (САЙДБАР) */
+        #sidebar {
+            width: 280px; background: var(--panel-bg);
+            border-right: 2px solid var(--purple); display: flex;
+            flex-direction: column; padding: 20px; transition: var(--transition);
+            position: relative; flex-shrink: 0;
+        }
+        #sidebar.collapsed { margin-left: -280px; }
+
+        .sidebar-toggle-handle {
+            position: absolute; right: -32px; top: 20px;
+            width: 32px; height: 40px; background: var(--purple);
+            border: 2px solid var(--purple); border-left: none;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            border-radius: 0 8px 8px 0; color: white;
         }
 
-        .main-btn:hover {
-            background: #8a2be2;
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+        .sidebar-item {
+            padding: 14px 18px; margin-bottom: 6px; color: var(--cyan);
+            font-weight: 700; text-transform: uppercase; font-size: 11px;
+            cursor: pointer; border-left: 3px solid transparent; transition: 0.3s;
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            color: #fff; background: rgba(0, 206, 209, 0.1);
+            border-left: 3px solid var(--cyan);
         }
 
-        /* Виджет сезона */
-        .season-widget {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+        .admin-nav-btn { color: #ff4444 !important; }
+        .admin-nav-btn:hover { background: rgba(255, 68, 68, 0.1) !important; border-left: 3px solid #ff4444 !important; }
+
+        /* КОНТЕНТ */
+        .content-area { flex-grow: 1; padding: 40px; overflow-y: auto; }
+        .empty-text { color: #555; font-style: italic; margin-top: 20px; }
+
+        /* ВХОД И ЧАТ */
+        .admin-box { max-width: 450px; margin: 80px auto 20px auto; text-align: center; }
+        .admin-input {
+            width: 100%; max-width: 300px; padding: 12px 20px; margin-bottom: 15px; 
+            background: #000; border: 1px solid var(--purple); color: #fff; 
+            border-radius: 25px; outline: none; transition: 0.3s;
         }
 
-        .season-icon {
-            width: 70px;
-            height: auto;
-            z-index: 2;
-            filter: drop-shadow(0 0 10px rgba(0, 206, 209, 0.6));
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .chat-msg-container {
+            display: flex; background: rgba(255, 255, 255, 0.05); border-radius: 12px;
+            padding: 12px; margin: 30px auto 0 auto; max-width: 350px;
+            text-align: left; border-left: 4px solid var(--purple);
+            animation: fadeIn 0.8s ease;
         }
+        .chat-avatar {
+            width: 40px; height: 40px; background: var(--purple); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 10px; flex-shrink: 0; margin-right: 12px;
+        }
+        .chat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .chat-author { font-weight: 900; font-size: 13px; color: #fff; }
+        .chat-rank { font-size: 9px; background: var(--cyan); color: #000; padding: 1px 4px; border-radius: 3px; font-weight: 900; }
+        .chat-time { font-size: 10px; color: #555; margin-left: auto; }
+        .chat-text { font-size: 12px; color: #ddd; line-height: 1.4; }
 
-        .season-text-hidden {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            margin-left: -10px;
-            padding-left: 30px;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.4s ease;
-            transform: translateX(-30px);
-        }
+        #owner-info { margin-top: 20px; padding: 15px; border: 1px dashed var(--cyan); display: none; border-radius: 10px; }
 
-        .season-title {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            margin: 0;
-        }
+        /* СЕЗОН-ВИДЖЕТ */
+        .season-widget { position: absolute; bottom: 30px; left: 30px; display: flex; align-items: center; cursor: pointer; }
+        .season-icon { width: 60px; filter: drop-shadow(0 0 8px var(--cyan)); transition: 0.5s; }
+        .season-text { margin-left: 12px; opacity: 0; transform: translateX(-15px); transition: 0.4s; pointer-events: none; }
+        .season-widget:hover .season-text { opacity: 1; transform: translateX(0); }
+        .season-widget:hover .season-icon { transform: rotate(-360deg); }
 
-        .season-name {
-            font-size: 20px;
-            font-weight: 900;
-            color: #ffffff;
-            margin: 0;
-            white-space: nowrap;
-        }
-
-        .season-widget:hover .season-icon {
-            transform: rotate(-360deg) scale(1.2);
-        }
-
-        .season-widget:hover .season-text-hidden {
-            opacity: 1;
-            transform: translateX(0px);
-            margin-left: 15px;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-text">For Lololowka</div>
-        
-        <div class="nav-container">
-            <!-- Список ссылок -->
-            <nav class="social-links" id="socialMenu">
-                <a href="https://www.youtube.com/@MrLololoshka" target="_blank" class="nav-link">YouTube</a>
-                <a href="https://t.me" target="_blank" class="nav-link">Telegram</a>
-                <a href="https://vk.com" target="_blank" class="nav-link">VK</a>
-            </nav>
-            <!-- Кнопка переключения -->
-            <button class="toggle-btn" id="toggleBtn" onclick="toggleMenu()">Соц сети показать</button>
-        </div>
     </header>
 
-    <main>
+    <main id="hero-page">
         <h1 class="fun-lowka">FunLowka</h1>
-        <div class="sub-title">Fun Project</div>
-        <div class="status">сайт находится в стадии разработки</div>
-        <a href="index.html" class="main-btn">Главная</a>
+        <div style="letter-spacing: 6px; color: #b388ff; text-transform: uppercase; font-size: 20px;">Fun Project</div>
+        <div style="color: #555; margin-top: 10px; font-size: 14px;">сайт находится в стадии разработки</div>
+        <button class="main-btn" onclick="openPortal()">Главная</button>
+
+        <div class="season-widget">
+            <img class="season-icon" src="M47.webp" alt="M47">
+            <div class="season-text">
+                <div style="font-size: 9px; color: #aaa;">ТЕКУЩИЙ СЕЗОН:</div>
+                <div style="font-size: 18px; font-weight: 900;">Мастерская 47</div>
+            </div>
+        </div>
     </main>
 
-    <div class="season-widget">
-        <img class="season-icon" src="M47.webp" alt="Мастерская 47">
-        <div class="season-text-hidden">
-            <p class="season-title">Текущий сезон:</p>
-            <p class="season-name">Мастерская 47</p>
-        </div>
+    <div id="main-panel">
+        <aside id="sidebar">
+            <div class="sidebar-toggle-handle" onclick="toggleSide()">☰</div>
+            <div class="sidebar-item active" onclick="sh('n', this)">Новости</div>
+            <div class="sidebar-item" onclick="sh('j', this)">Анекдоты</div>
+            <div class="sidebar-item" onclick="sh('h', this)">Обновления</div>
+            <div id="admin-login-btn" class="sidebar-item admin-nav-btn" onclick="sh('a', this)">Вход от имени администратора</div>
+            <div id="logout-btn" class="sidebar-item admin-nav-btn" style="display:none;" onclick="location.reload()">Выйти из аккаунта</div>
+            <div id="owner-info">
+                <div id="rank-display" style="font-size: 10px; color: var(--cyan);">СТАТУС:</div>
+                <div id="name-display" style="font-size: 14px; font-weight: 900;">-</div>
+            </div>
+            <div class="sidebar-item" style="color:#aaa; margin-top:auto" onclick="location.reload()">Выход на главную</div>
+        </aside>
+
+        <section class="content-area">
+            <div id="n" class="sec"><h2>Новости</h2><p class="empty-text">Тут пока ничего нет</p></div>
+            <div id="j" class="sec" style="display:none"><h2>Анекдоты</h2><p class="empty-text">Тут пока ничего нет</p></div>
+            <div id="h" class="sec" style="display:none"><h2>Обновления</h2><p class="empty-text">Тут пока ничего нет</p></div>
+            
+            <div id="a" class="sec" style="display:none">
+                <h2 id="page-title">Авторизация</h2>
+                <div class="admin-box" id="login-form">
+                    <input type="text" id="adm-u" class="admin-input" placeholder="Логин">
+                    <input type="password" id="adm-p" class="admin-input" placeholder="Пароль">
+                    <button class="main-btn" style="width:300px; padding:12px; border-radius:25px;" onclick="tryLogin()">Войти</button>
+                    
+                    <div class="chat-msg-container">
+                        <div class="chat-avatar">HTD</div>
+                        <div class="chat-content">
+                            <div class="chat-header">
+                                <span class="chat-author">HTD</span>
+                                <span class="chat-rank">ВЛАДЕЛЕЦ</span>
+                                <span class="chat-time">SYSTEM</span>
+                            </div>
+                            <div class="chat-text">Не пытайтесь взломать админов, а то вам будет... А хотя я же ничего не могу сделать...</div>
+                        </div>
+                    </div>
+                    <div id="auth-status" style="margin-top:15px; font-size:12px;"></div>
+                </div>
+                <div id="admin-tools" style="display:none"><h3 id="welcome-msg" style="color:var(--cyan)"></h3></div>
+            </div>
+        </section>
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('socialMenu');
-            const btn = document.getElementById('toggleBtn');
-            
-            menu.classList.toggle('active');
-            
-            if (menu.classList.contains('active')) {
-                btn.textContent = 'Скрыть';
-            } else {
-                btn.textContent = 'Соц сети показать';
-            }
+        function openPortal() {
+            document.getElementById('hero-page').classList.add('hidden');
+            const panel = document.getElementById('main-panel');
+            panel.style.display = 'flex';
+            setTimeout(() => panel.classList.add('active'), 50);
+        }
+        function toggleSide() { document.getElementById('sidebar').classList.toggle('collapsed'); }
+        function sh(id, el) {
+            document.querySelectorAll('.sec').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+            document.getElementById(id).style.display = 'block';
+            el.classList.add('active');
+        }
+        function tryLogin() {
+            const u = document.getElementById('adm-u').value;
+            const p = document.getElementById('adm-p').value;
+            if(u === 'HTD' && p === 'timur1234papa') loginSuccess('HTD', 'ВЛАДЕЛЕЦ');
+            else if (u === 'Rusik9656' && p === '10ru29sik') loginSuccess('Rusik9656', 'АДМИНИСТРАТОР');
+            else { document.getElementById('auth-status').style.color = '#ff4444'; document.getElementById('auth-status').textContent = 'ОШИБКА ДОСТУПА'; }
+        }
+        function loginSuccess(name, rank) {
+            document.getElementById('auth-status').style.color = 'var(--cyan)'; document.getElementById('auth-status').textContent = 'УСПЕШНО';
+            setTimeout(() => {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('admin-tools').style.display = 'block';
+                document.getElementById('owner-info').style.display = 'block';
+                document.getElementById('admin-login-btn').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'block';
+                document.getElementById('name-display').textContent = name;
+                document.getElementById('rank-display').textContent = 'СТАТУС: ' + rank;
+                document.getElementById('welcome-msg').textContent = 'Добро пожаловать, ' + name;
+                document.getElementById('page-title').textContent = 'Доступ разрешен';
+            }, 800);
         }
     </script>
-
 </body>
 </html>
