@@ -9,6 +9,7 @@
         :root {
             --purple: #8a2be2;
             --cyan: #00ced1;
+            --pink: #ff69b4;
             --panel-bg: rgba(5, 5, 5, 0.98);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -50,9 +51,9 @@
 
         .main-btn {
             color: white; font-weight: 900; text-transform: uppercase;
-            padding: 16px 50px; background: rgba(138, 43, 226, 0.1);
+            padding: 12px 40px; background: rgba(138, 43, 226, 0.1);
             border: 2px solid var(--purple); border-radius: 50px;
-            cursor: pointer; transition: 0.3s; margin-top: 30px;
+            cursor: pointer; transition: 0.3s; margin: 10px 0;
         }
         .main-btn:hover { background: var(--purple); transform: scale(1.05); box-shadow: 0 0 30px var(--purple); }
 
@@ -88,57 +89,76 @@
             border-left: 3px solid var(--cyan);
         }
 
-        .admin-nav-btn { color: #ff4444 !important; }
+        .admin-nav-btn { color: #ff4444 !important; font-weight: 900; }
         .admin-nav-btn:hover { background: rgba(255, 68, 68, 0.1) !important; border-left: 3px solid #ff4444 !important; }
 
-        .content-area { flex-grow: 1; padding: 40px; overflow-y: auto; }
+        .content-area { flex-grow: 1; padding: 20px 40px; overflow-y: auto; }
 
-        .chat-msg-container {
-            display: flex; background: rgba(255, 255, 255, 0.05); border-radius: 12px;
-            padding: 12px; margin: 20px 0; max-width: 450px;
+        .rating-top-bar {
+            background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px; padding: 15px 25px; margin-bottom: 30px;
+            display: flex; align-items: center; justify-content: space-between; max-width: 900px;
+        }
+
+        .stars-container { font-size: 24px; cursor: pointer; color: #222; display: flex; gap: 5px; }
+        .star.active { color: #ffcc00; text-shadow: 0 0 10px #ffcc00; }
+
+        .jokes-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .chat-msg-container, .special-card {
+            background: rgba(255, 255, 255, 0.05); border-radius: 12px;
+            padding: 15px; margin: 15px 0; max-width: 600px;
             text-align: left; border-left: 4px solid var(--purple);
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.5s ease; position: relative; overflow-wrap: break-word;
         }
+        .special-card { margin: 0; max-width: 100%; border: 1px solid rgba(138, 43, 226, 0.2); }
+
         .chat-avatar {
-            width: 40px; height: 40px; background: var(--purple); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 10px; flex-shrink: 0; margin-right: 12px;
+            width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; flex-shrink: 0; margin-right: 12px; color: white; border: 1px solid rgba(255,255,255,0.1);
         }
+        .ava-htd { background-color: var(--purple); font-size: 11px; }
+        .ava-rusik { background-color: #ff0000; font-size: 18px; }
+        .ava-ivett { background-color: var(--pink); font-size: 10px; }
+        .ava-default { background-color: #333; font-size: 10px; }
+
+        .card-ver { color: var(--purple); font-weight: 900; font-size: 12px; margin-bottom: 5px; }
+        .card-title { color: var(--cyan); font-weight: 900; font-size: 15px; margin-bottom: 8px; }
+
         .chat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
         .chat-author { font-weight: 900; font-size: 13px; color: #fff; }
         .chat-rank { font-size: 9px; background: var(--cyan); color: #000; padding: 1px 4px; border-radius: 3px; font-weight: 900; }
         .chat-time { font-size: 10px; color: #666; margin-left: auto; }
-        .chat-text { font-size: 12px; color: #ddd; line-height: 1.4; white-space: pre-line; }
+        .chat-text { font-size: 13px; color: #ddd; line-height: 1.5; white-space: pre-line; }
 
-        .admin-box { max-width: 450px; margin: 80px auto 20px auto; text-align: center; }
+        .del-msg { position: absolute; right: 10px; top: 10px; color: #444; font-size: 9px; cursor: pointer; font-weight: 900; }
+        .del-msg:hover { color: #ff4444; }
+
+        .search-input {
+            width: 100%; max-width: 300px; padding: 10px 20px;
+            background: rgba(0,0,0,0.5); border: 1px solid var(--purple); color: #fff; border-radius: 20px; outline: none;
+        }
+
         .admin-input {
-            width: 100%; max-width: 300px; padding: 12px 20px; margin-bottom: 15px; 
-            background: #000; border: 1px solid var(--purple); color: #fff; 
-            border-radius: 25px; outline: none; transition: 0.3s;
+            width: 100%; max-width: 350px; padding: 12px 20px; margin-bottom: 15px; 
+            background: #000; border: 1px solid var(--purple); color: #fff; border-radius: 25px; outline: none;
         }
         #owner-info { margin-top: 20px; padding: 15px; border: 1px dashed var(--cyan); display: none; border-radius: 10px; }
 
-        /* ВИДЖЕТ: БЫСТРЫЙ ПОВОРОТ НА МЕСТЕ (РОВНАЯ ОСТАНОВКА) */
         .season-widget { position: absolute; bottom: 30px; left: 60px; display: flex; align-items: center; cursor: pointer; }
-        .season-icon { 
-            width: 60px; 
-            filter: drop-shadow(0 0 8px var(--cyan)); 
-            /* Быстрая и плавная транзиция */
-            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s; 
-        }
+        .season-icon { width: 60px; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); filter: drop-shadow(0 0 8px var(--cyan)); }
         .season-text { margin-left: 12px; opacity: 0; transform: translateX(-15px); transition: 0.3s; pointer-events: none; }
-        
         .season-widget:hover .season-text { opacity: 1; transform: translateX(0); }
-        
-        /* При наведении: ровно один оборот и увеличение, стоит прямо */
-        .season-widget:hover .season-icon { 
-            transform: rotate(-360deg) scale(1.3); 
-            filter: drop-shadow(0 0 20px var(--cyan)); 
+        .season-widget:hover .season-icon { transform: rotate(-360deg) scale(1.3); filter: drop-shadow(0 0 20px var(--cyan)); }
+
+        #modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 5000; justify-content: center; align-items: center;
         }
-        /* При отводе: возврат в 0 */
-        .season-widget:not(:hover) .season-icon {
-            transform: rotate(0deg) scale(1);
-        }
+        .modal-box { background: #0a0a0a; border: 2px solid var(--purple); padding: 30px; border-radius: 20px; width: 400px; text-align: center; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -149,8 +169,7 @@
 
     <main id="hero-page">
         <h1 class="fun-lowka">FunLowka</h1>
-        <div style="letter-spacing: 6px; color: #b388ff; text-transform: uppercase; font-size: 20px;">Fun Project</div>
-        <div style="color: #555; margin-top: 10px; font-size: 14px;">сайт находится в стадии разработки</div>
+        <div style="letter-spacing: 6px; color: #b388ff; text-transform: uppercase; font-size: 20px; margin-bottom: 20px;">Fun Project</div>
         <button class="main-btn" onclick="openPortal()">Главная</button>
 
         <div class="season-widget">
@@ -165,119 +184,234 @@
     <div id="main-panel">
         <aside id="sidebar">
             <div class="sidebar-toggle-handle" onclick="toggleSide()">☰</div>
-            <div class="sidebar-item active" onclick="sh('n', this)">Новости</div>
-            <div class="sidebar-item" onclick="sh('j', this)">Анекдоты</div>
-            <div class="sidebar-item" onclick="sh('h', this)">Обновления</div>
-            
-            <div id="admin-login-btn" class="sidebar-item admin-nav-btn" onclick="sh('a', this)">Вход от имени администратора</div>
-            <div id="logout-btn" class="sidebar-item admin-nav-btn" style="display:none;" onclick="logout()">Выйти из аккаунта</div>
-            
+            <div class="sidebar-item" id="nav-n" onclick="sh('n', this)">Новости</div>
+            <div class="sidebar-item" id="nav-j" onclick="sh('j', this)">Анекдоты</div>
+            <div class="sidebar-item" id="nav-h" onclick="sh('h', this)">Обновления</div>
+            <div id="admin-login-btn" class="sidebar-item admin-nav-btn" onclick="sh('a', this)">Вход</div>
+            <div id="logout-btn" class="sidebar-item admin-nav-btn" style="display:none;" onclick="logout()">Выйти</div>
             <div id="owner-info">
-                <div id="rank-display" style="font-size: 10px; color: var(--cyan);">СТАТУС:</div>
-                <div id="name-display" style="font-size: 14px; font-weight: 900;">-</div>
+                <div id="name-display" style="font-size: 14px; font-weight: 900;"></div>
+                <div id="rank-display" style="font-size: 10px; color: var(--cyan);"></div>
             </div>
-            <div class="sidebar-item" style="color:#aaa; margin-top:auto" onclick="location.reload()">Выход с сайта</div>
         </aside>
 
         <section class="content-area">
-            <div id="n" class="sec">
-                <h2>Новости</h2>
-                <div class="chat-msg-container">
-                    <div class="chat-avatar">HTD</div>
-                    <div class="chat-content">
-                        <div class="chat-header"><span class="chat-author">HTD</span><span class="chat-rank">ВЛАДЕЛЕЦ</span><span class="chat-time">ПН 23.02.2026 15:48</span></div>
-                        <div class="chat-text">Тут нечего нет... Мне лень делать v2.5.8</div>
-                    </div>
+            <div class="rating-top-bar">
+                <div style="text-align: left;">
+                    <div style="font-size: 10px; color: var(--cyan); font-weight: 900;">РЕЙТИНГ САЙТА</div>
+                    <div id="rating-val" style="font-size: 28px; font-weight: 900; color: #fff;">0.0</div>
                 </div>
+                <div id="stars-wrap">
+                    <div class="stars-container" id="stars">
+                        <span class="star" onclick="setRating(2)">★</span>
+                        <span class="star" onclick="setRating(4)">★</span>
+                        <span class="star" onclick="setRating(6)">★</span>
+                        <span class="star" onclick="setRating(8)">★</span>
+                        <span class="star" onclick="setRating(10)">★</span>
+                    </div>
+                    <div id="vote-count" style="font-size: 10px; color: #666; text-align: center;">0 отзывов</div>
+                </div>
+                <div id="voted-msg" style="display:none; font-size: 10px; color: var(--purple); font-weight: 900;">СПАСИБО!</div>
             </div>
 
+            <div id="n" class="sec"><h2>Новости</h2><div id="n-tools"></div><div id="n-feed"></div></div>
             <div id="j" class="sec" style="display:none">
                 <h2>Анекдоты</h2>
-                <div class="chat-msg-container">
-                    <div class="chat-avatar">HTD</div>
-                    <div class="chat-content">
-                        <div class="chat-header"><span class="chat-author">HTD</span><span class="chat-rank">ВЛАДЕЛЕЦ</span><span class="chat-time">ПН 23.02.2026 15:48</span></div>
-                        <div class="chat-text">Тут нечего нет... Мне лень делать v2.5.8</div>
-                    </div>
+                <div style="display:flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <input type="text" id="joke-search" class="search-input" placeholder="Поиск..." oninput="render()">
+                    <div id="j-tools"></div>
                 </div>
+                <div id="j-feed" class="jokes-grid"></div>
             </div>
-
-            <div id="h" class="sec" style="display:none">
-                <h2>Обновления</h2>
-                <div class="chat-msg-container">
-                    <div class="chat-avatar">HTD</div>
-                    <div class="chat-content">
-                        <div class="chat-header"><span class="chat-author">HTD</span><span class="chat-rank">ВЛАДЕЛЕЦ</span><span class="chat-time">ПН 23.02.2026 15:48</span></div>
-                        <div class="chat-text">Тут нечего нет... Мне лень делать v2.5.8</div>
-                    </div>
-                </div>
-            </div>
-            
+            <div id="h" class="sec" style="display:none"><h2>Обновления</h2><div id="h-tools"></div><div id="h-feed"></div></div>
             <div id="a" class="sec" style="display:none">
-                <h2 id="page-title">Авторизация</h2>
                 <div class="admin-box" id="login-form">
+                    <h2 style="margin-bottom: 20px;">Авторизация</h2>
                     <input type="text" id="adm-u" class="admin-input" placeholder="Логин">
                     <input type="password" id="adm-p" class="admin-input" placeholder="Пароль">
-                    <button class="main-btn" style="width:300px; padding:12px; border-radius:25px;" onclick="tryLogin()">Войти</button>
-                    <div class="chat-msg-container" style="margin-top:30px">
-                        <div class="chat-avatar">HTD</div>
-                        <div class="chat-content">
-                            <div class="chat-header"><span class="chat-author">HTD</span><span class="chat-rank">ВЛАДЕЛЕЦ</span></div>
-                            <div class="chat-text">Не пытайтесь взломать админов, а то вам будет... А хотя я же ничего не могу сделать...</div>
-                        </div>
-                    </div>
-                    <div id="auth-status" style="margin-top:15px; font-size:12px;"></div>
+                    <button class="main-btn" onclick="tryLogin()" style="width: 100%;">Войти</button>
+                    <div id="auth-status" style="margin-top: 10px; font-weight: 900;"></div>
                 </div>
-                <div id="admin-tools" style="display:none"><h3 id="welcome-msg" style="color:var(--cyan)"></h3></div>
+                <div id="admin-tools" style="display:none"><h3 id="welcome-msg"></h3></div>
             </div>
         </section>
     </div>
 
+    <div id="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modal-title">Создать запись</h3>
+            <input type="text" id="post-meta" class="admin-input" placeholder="Заголовок">
+            <input type="text" id="post-custom-author" class="admin-input" placeholder="Автор/Источник">
+            <textarea id="post-text" class="admin-input" style="height:120px; resize:none;" placeholder="Текст..."></textarea>
+            <button class="main-btn" onclick="confirmAdd()" style="width: 100%;">Опубликовать</button>
+            <button class="main-btn" style="background:none; border:none; color: #444;" onclick="closeModal()">Отмена</button>
+        </div>
+    </div>
+
     <script>
+        let cur = JSON.parse(localStorage.getItem('fun_user')) || { name: '', role: 'GUEST', rank: '' };
+        let posts = JSON.parse(localStorage.getItem('fun_posts')) || { n: [], j: [], h: [] };
+        let ratingData = JSON.parse(localStorage.getItem('fun_rating')) || { totalPoints: 0, count: 0 };
+        let activeTab = 'n';
+
+        window.onload = () => { 
+            if(cur.role !== 'GUEST') applyLogin(); 
+            updateRatingUI();
+            render();
+            setupVersionMask();
+        };
+
+        function setupVersionMask() {
+            const metaInput = document.getElementById('post-meta');
+            metaInput.addEventListener('input', function() {
+                if(activeTab !== 'h') return;
+                let val = this.value.replace(/\D/g, '');
+                if(val.length > 3) val = val.slice(0, 3);
+                let res = "";
+                for(let i=0; i<val.length; i++) {
+                    res += val[i];
+                    if(i < val.length - 1 && i < 2) res += ".";
+                }
+                this.value = res;
+            });
+        }
+
         function openPortal() {
             document.getElementById('hero-page').classList.add('hidden');
-            const panel = document.getElementById('main-panel');
-            panel.style.display = 'flex';
-            setTimeout(() => panel.classList.add('active'), 50);
+            document.getElementById('main-panel').style.display = 'flex';
+            document.getElementById('main-panel').classList.add('active');
+            sh('n', document.getElementById('nav-n')); 
         }
+
         function toggleSide() { document.getElementById('sidebar').classList.toggle('collapsed'); }
+        
         function sh(id, el) {
             document.querySelectorAll('.sec').forEach(s => s.style.display = 'none');
             document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
             document.getElementById(id).style.display = 'block';
-            el.classList.add('active');
+            if(el) el.classList.add('active');
+            activeTab = id;
+            updateTools();
         }
+
         function tryLogin() {
-            const u = document.getElementById('adm-u').value;
-            const p = document.getElementById('adm-p').value;
-            if(u === 'HTD' && p === 'timur1234papa') loginSuccess('HTD', 'ВЛАДЕЛЕЦ');
-            else if (u === 'Rusik9656' && p === '10ru29sik') loginSuccess('Rusik9656', 'АДМИНИСТРАТОР');
-            else if (u === 'IVETT_Gost' && p === '746823ww#') loginSuccess('IVETT_Gost', 'СО-ВЛАДЕЛЕЦ');
-            else { document.getElementById('auth-status').style.color = '#ff4444'; document.getElementById('auth-status').textContent = 'ОШИБКА'; }
+            const u = document.getElementById('adm-u').value, p = document.getElementById('adm-p').value;
+            if(u === 'HTD' && p === 'timur1234papa') setLogin('HTD', 'ВЛАДЕЛЕЦ', 'OWNER');
+            else if (u === 'Rusik9656' && p === '10ru29sik') setLogin('Rusik9656', 'АДМИНИСТРАТОР', 'ADMIN');
+            else if (u === 'IVETT_Gost' && p === '746823ww#') setLogin('IVETT_Gost', 'СО-ВЛАДЕЛЕЦ', 'COOWNER');
+            else document.getElementById('auth-status').innerText = 'ОШИБКА';
         }
-        function loginSuccess(name, rank) {
+
+        function setLogin(n, r, role) {
+            cur = { name: n, rank: r, role };
+            localStorage.setItem('fun_user', JSON.stringify(cur));
+            applyLogin();
+            sh('n', document.getElementById('nav-n'));
+        }
+
+        function applyLogin() {
             document.getElementById('login-form').style.display = 'none';
             document.getElementById('admin-tools').style.display = 'block';
             document.getElementById('owner-info').style.display = 'block';
             document.getElementById('admin-login-btn').style.display = 'none';
             document.getElementById('logout-btn').style.display = 'block';
-            document.getElementById('name-display').textContent = name;
-            document.getElementById('rank-display').textContent = 'СТАТУС: ' + rank;
-            document.getElementById('welcome-msg').textContent = 'Добро пожаловать, ' + name;
-            document.getElementById('page-title').textContent = 'Доступ разрешен';
+            document.getElementById('name-display').innerText = cur.name;
+            document.getElementById('rank-display').innerText = cur.rank;
+            document.getElementById('welcome-msg').innerText = 'Привет, ' + cur.name;
+            updateTools();
         }
-        function logout() {
-            document.getElementById('owner-info').style.display = 'none';
-            document.getElementById('admin-tools').style.display = 'none';
-            document.getElementById('logout-btn').style.display = 'none';
-            document.getElementById('admin-login-btn').style.display = 'block';
-            document.getElementById('login-form').style.display = 'block';
-            document.getElementById('page-title').textContent = 'Авторизация';
-            document.getElementById('adm-u').value = '';
-            document.getElementById('adm-p').value = '';
-            document.getElementById('auth-status').textContent = '';
-            sh('a', document.getElementById('admin-login-btn'));
+
+        function logout() { localStorage.removeItem('fun_user'); location.reload(); }
+
+        function updateRatingUI() {
+            const avg = ratingData.count === 0 ? 0 : (ratingData.totalPoints / ratingData.count).toFixed(1);
+            document.getElementById('rating-val').innerText = avg;
+            document.getElementById('vote-count').innerText = `${ratingData.count} отзывов`;
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((s, i) => { s.classList.toggle('active', (i + 1) * 2 <= avg); });
+            if(localStorage.getItem('fun_voted')) {
+                document.getElementById('stars-wrap').style.display = 'none';
+                document.getElementById('voted-msg').style.display = 'block';
+            }
         }
+
+        function setRating(val) {
+            if(localStorage.getItem('fun_voted')) return;
+            ratingData.totalPoints += val;
+            ratingData.count += 1;
+            localStorage.setItem('fun_rating', JSON.stringify(ratingData));
+            localStorage.setItem('fun_voted', 'true');
+            updateRatingUI();
+        }
+
+        function updateTools() {
+            const nt = document.getElementById('n-tools'), jt = document.getElementById('j-tools'), ht = document.getElementById('h-tools');
+            if(!nt || !jt || !ht) return;
+            nt.innerHTML = (cur.role !== 'GUEST') ? `<button class="main-btn" onclick="openModal('n')">+ Новость</button>` : '';
+            jt.innerHTML = (cur.role === 'OWNER' || cur.role === 'COOWNER') ? `<button class="main-btn" onclick="openModal('j')">+ Добавить анекдот</button>` : '';
+            ht.innerHTML = (cur.role === 'OWNER') ? `<button class="main-btn" onclick="openModal('h')">+ Обновление</button>` : '';
+        }
+
+        function openModal(t) {
+            document.getElementById('modal-overlay').style.display = 'flex';
+            document.getElementById('post-meta').style.display = (t === 'n' ? 'none' : 'block');
+            document.getElementById('post-custom-author').style.display = (t === 'j' ? 'block' : 'none');
+            document.getElementById('post-meta').placeholder = (t === 'h' ? 'Версия (X.X.X)' : 'Заголовок');
+            document.getElementById('post-meta').value = '';
+        }
+        function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+
+        function confirmAdd() {
+            const meta = document.getElementById('post-meta').value, custAuth = document.getElementById('post-custom-author').value, txt = document.getElementById('post-text').value;
+            if(!txt) return;
+            let author = (activeTab === 'h') ? "Funlowka" : (custAuth || cur.name);
+            let rank = (activeTab === 'h') ? "SYSTEM" : (custAuth ? "USER" : cur.rank);
+            posts[activeTab].unshift({ meta, author, rank, text: txt, time: new Date().toLocaleTimeString().slice(0,5) });
+            localStorage.setItem('fun_posts', JSON.stringify(posts));
+            document.getElementById('post-meta').value = ''; document.getElementById('post-text').value = ''; document.getElementById('post-custom-author').value = '';
+            closeModal(); render();
+        }
+
+        function getAvatar(name) {
+            if(name === "HTD") return `<div class="chat-avatar ava-htd">HTD</div>`;
+            if(name === "Rusik9656") return `<div class="chat-avatar ava-rusik">R</div>`;
+            if(name === "IVETT_Gost") return `<div class="chat-avatar ava-ivett">Gost</div>`;
+            return `<div class="chat-avatar ava-default">${name.slice(0,2).toUpperCase()}</div>`;
+        }
+
+        function render() {
+            const search = document.getElementById('joke-search').value.toLowerCase();
+            ['n','j','h'].forEach(tab => {
+                const feed = document.getElementById(tab + '-feed');
+                if(!feed) return;
+                let html = '';
+                posts[tab].forEach((p, i) => {
+                    if(tab === 'j' && search && !p.text.toLowerCase().includes(search) && !p.meta.toLowerCase().includes(search)) return;
+                    const canDel = (cur.role === 'OWNER') || (i === 0 && p.author === cur.name);
+                    if(tab === 'j' || tab === 'h') {
+                        html += `<div class="special-card">
+                            ${p.meta ? `<div class="${tab==='h'?'card-ver':'card-title'}">${tab==='h'?'ВЕРСИЯ: ':''}${p.meta}</div>` : ''}
+                            <div class="chat-text">${p.text}</div>
+                            <div class="chat-header" style="margin-top:10px; opacity:0.5;">
+                                <span class="chat-author">@${p.author}</span><span class="chat-time">${p.time}</span>
+                            </div>
+                            ${canDel ? `<div class="del-msg" onclick="del('${tab}',${i})">УДАЛИТЬ</div>`:''}
+                        </div>`;
+                    } else {
+                        html += `<div class="chat-msg-container">
+                            ${getAvatar(p.author)}
+                            <div style="flex-grow:1">
+                                <div class="chat-header"><span class="chat-author">${p.author}</span><span class="chat-rank">${p.rank}</span><span class="chat-time">${p.time}</span></div>
+                                <div class="chat-text">${p.text}</div>
+                            </div>
+                            ${canDel ? `<div class="del-msg" onclick="del('${tab}',${i})">УДАЛИТЬ</div>`:''}
+                        </div>`;
+                    }
+                });
+                feed.innerHTML = html || '<div style="padding: 20px; color: #444;">Пусто...</div>';
+            });
+        }
+        function del(t, i) { posts[t].splice(i, 1); localStorage.setItem('fun_posts', JSON.stringify(posts)); render(); }
     </script>
 </body>
 </html>
