@@ -252,6 +252,7 @@
             const p = document.getElementById('adm-p').value;
             if(u === 'HTD' && p === 'timur1234papa') loginSuccess('HTD', 'ВЛАДЕЛЕЦ');
             else if (u === 'Rusik9656' && p === '10ru29sik') loginSuccess('Rusik9656', 'АДМИНИСТРАТОР');
+            else if (u === 'IVETT_Gost' && p === '746823ww#') loginSuccess('IVETT_Gost', 'СО-ВЛАДЕЛЕЦ');
             else { document.getElementById('auth-status').style.color = '#ff4444'; document.getElementById('auth-status').textContent = 'ОШИБКА'; }
         }
         function loginSuccess(name, rank) {
